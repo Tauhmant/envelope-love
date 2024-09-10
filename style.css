@@ -1,0 +1,156 @@
+/* Reset and basic styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #f7dede, #fbe7e7);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+}
+
+/* Envelope Container */
+.envelope-container {
+    perspective: 1500px;
+    position: relative;
+    width: 500px;
+    height: 300px;
+}
+
+/* Envelope */
+.envelope {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+}
+
+.envelope.open .flap {
+    transform: rotateX(180deg);
+    transition-delay: 0.5s;
+}
+
+.envelope.open .front {
+    opacity: 0;
+    transform: translateY(-50%);
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+    transition-delay: 1s;
+}
+
+.envelope.open .letter {
+    transform: translateY(-100%);
+    transition: transform 1s ease-in-out;
+    transition-delay: 1.5s;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+/* Front and Flap */
+.envelope .front,
+.envelope .flap {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #ffc1cc;
+    border: 5px solid #f8b195;
+    border-radius: 20px;
+    backface-visibility: hidden;
+}
+
+/* Flap */
+.envelope .flap {
+    height: 200px;
+    top: -100px;
+    left: 0;
+    background: #ff99aa;
+    transform-origin: bottom;
+    transition: transform 1s;
+}
+
+/* Letter */
+.envelope .letter {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    height: 300px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transform: translateY(100%);
+    transition: transform 1s ease-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Fancy Text */
+.fancy-text {
+    font-size: 36px;
+    color: #555;
+    font-family: 'Dancing Script', cursive;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Cute Heart Decoration */
+.heart {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: #ff6b81;
+    transform: rotate(-45deg);
+    animation: pulse 2s infinite;
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: #ff6b81;
+    border-radius: 50%;
+}
+
+.heart::before {
+    top: -25px;
+    left: 0;
+}
+
+.heart::after {
+    left: 25px;
+    top: 0;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: rotate(-45deg) scale(1);
+    }
+    50% {
+        transform: rotate(-45deg) scale(1.1);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .envelope-container {
+        width: 90%;
+        height: 300px;
+    }
+
+    .fancy-text {
+        font-size: 28px;
+    }
+}
